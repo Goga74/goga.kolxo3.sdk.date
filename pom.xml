@@ -111,6 +111,12 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<nvdApiKeyEnvironmentVariable>NVD_API_KEY</nvdApiKeyEnvironmentVariable> <!-- Переменная окружения с ключом -->
+					<autoUpdate>false</autoUpdate>
+					<dataDirectory></dataDirectory>
+					<nvdApiDelay>1200</nvdApiDelay>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
