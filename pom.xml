@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.18</version>
+		<relativePath/>
+	</parent>
+
+	<groupId>goga.kolxo3.sdk</groupId>
+	<artifactId>date</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>sdk_kolxo3_date</name>
+	<description>Java library to parse date</description>
+
+	<scm>
+		<connection>scm:git:https://github.com/Goga74/goga.kolxo3.sdk.date.git</connection>
+		<developerConnection>scm:git:git@github.com:Goga74/goga.kolxo3.sdk.date.git</developerConnection>
+		<url>https://github.com/Goga74/goga.kolxo3.sdk.date</url>
+	</scm>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<spring-framework.version>5.3.32</spring-framework.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Override spring-framework version -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring-framework.version}</version>
+			</dependency>
+
+			<!-- Spring Boot Dependencies (Managed) -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter</artifactId>
+				<version>2.7.18</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>2.7.18</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-log4j2</artifactId>
+				<version>2.7.18</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- Spring Boot Starter без Logback -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- Log4j 2 как реализация логирования -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
+		<!-- Тестовые зависимости -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.owasp</groupId>
+				<artifactId>dependency-check-maven</artifactId>
+				<version>7.0.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.2</version>
+				<configuration>
+					<forkCount>1</forkCount>
+					<reuseForks>false</reuseForks>
+					<useSystemClassLoader>false</useSystemClassLoader>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
